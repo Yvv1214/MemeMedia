@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			token: null,
 			message: null,
 			demo: [
 				{
@@ -15,24 +16,83 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			]
 		},
-		actions: {
-			// Use getActions to call a function within a fuction
+
+
+			actions: {
+				// Use getActions to call a function within a fuction
+				
+				syncTokenfromLocalStorage: () => {
+					const token = localStorage.getItem('token')
+					if(token && token != '' && token != undefined)
+					setStore({token: token});
+				},
+
+				logout: () => {
+					const token = localStorage.removeItem('token');
+					console.log('login out');
+					setStore({token: null});
+				},
+			
+				// make it async so u can use it with .then() on the login page actions.login.then()
+					login: async (email, password) => {
+						const options = {
+							method:'POST',
+							headers: {
+								"Content_Type": "application/json"
+						},
+							body: JSON.stringify({
+								"email": email,
+								"password": password
+							})
+						};
+		
+				//'try' this if it doesnt work it moves to catch
+						try{
+						const resp = await fetch('https://yvv1214-musical-garbanzo-w9qp54gvvq7f54j-3001.preview.app.github.dev/api/login', options)
+								if(resp.status !== 200) {
+								alert('an error occured');
+								return false;
+								 }
+				// if response status is not 200 get alert else jsonify
+						const data = await resp.json()
+							console.log(data, 'this came from backend');
+							localStorage.setItem('data', data.access_token);
+							setStore({token: access_token})	
+							return true;
+				// access_token comes from the postman where u post/login that has the hash and the token being used is the one thats null atop
+				//the login() also stores the token with setStore and making token: null into token:lasdjfljoiwroifn
+						}			
+						
+						catch(error) {
+							  console.error('There was an error', error)
+							  }
+						
+				
+					}
+					},
+			
+
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
 
 			getMessage: async () => {
-				try{
-					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
-					const data = await resp.json()
-					setStore({ message: data.message })
-					// don't forget to return something, that is how the async resolves
-					return data;
-				}catch(error){
-					console.log("Error loading message from backend", error)
+				const store = getStore()
+				const opts = {
+					headers: {
+						"Authorization" : "Bearer" + store.token
+					}
 				}
+				
+					// fetching data from the backend
+					fetch(process.env.BACKEND_URL + "/api/hello", opts)
+					.then(resp => resp.json())
+					.then(data => setStore({ message: data.message }))
+					.catch(error => 
+					console.log("Error loading message from backend", error))
 			},
+
+
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
@@ -49,6 +109,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			}
 		}
 	};
-};
+
 
 export default getState;
