@@ -1,38 +1,37 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Link } from "react-router-dom";
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
-export const Home = () => {
+export const Login = () => {
+
 	const { store, actions } = useContext(Context);
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
-	const history = useHistory()
 	const token = localStorage.getItem('token')
+	const navigate = useNavigate()
 	console.log(token, 'your token')
 
  //requesting token frontend from flux file action.login
-	const submit = () => {
-	 	actions.login(email, password).then(() => {
-				history.push('/contents')
-		})
+	const submit = (e) => {
+		e.preventDefault()
+		actions.login(email,password)			 	
 	 }
-
-
 
 	return (
 		<div className="text-center mt-5">
 			<h1>Please Sign In </h1>
 
 
-			{/* if token exist and token isnt '' and undefined login success else fill this form */}
-			{(token && token !=="" && token != undefined) ? "login successfull with this token" + token : 
+			{/* if token exist and token isnt '' and undefined login success u get redirected to login successfule, else fill this form */}
+			{(token && token !== "" && token !== undefined) ? "login successfull with this token" + token :
+			
 
-			<form className="container w-25 p-4 bg-light">
+			<form className="container w-25 p-4 bg-light" onSubmit={(e) => submit(e)}>
 			<div className="form-group ">
 				<label for="loginEmail">Email address</label>
-				<input type="email" className="form-control" id="loginEmail" placeholder="email@example.com" value={email} onChange={e => setEmail(e.target.value)}></input>
+				<input type="text" className="form-control" id="loginEmail" placeholder="email@example.com" value={email} onChange={e => setEmail(e.target.value)}></input>
 			</div>
 
 			<div className="form-group mt-2">
@@ -47,7 +46,7 @@ export const Home = () => {
 				</label>
 			</div>
 			
-			<button type="submit" className="btn btn-primary mt-2" onSubmit={submit}>Sign in</button>
+			<button type="submit" className="btn btn-primary mt-2">Sign in</button>
 
 			<div className="mt-2">
 				<Link to={'./new_user'}>
@@ -55,7 +54,7 @@ export const Home = () => {
 				</Link>
 			</div>
 			</form>
-			}
+}
 
 		</div>
 	);

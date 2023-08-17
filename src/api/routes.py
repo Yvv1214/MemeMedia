@@ -41,12 +41,12 @@ def create_user():
 
 
 
-# @api.route("/hello", methods=["GET"])
-# @jwt_required   #<--- this makes it private
-# def get_hello():
-#     dictionary = {
-#         "msg": "hello"
-#     }
-#     return jsonify(dictionary)
+@api.route("/private", methods=["GET"])
+@jwt_required   #<--- this makes it private
+def get_hello():
+    dictionary = {
+        "msg": "hello"
+    }
+    return jsonify(dictionary)
 
 

@@ -15,7 +15,7 @@ export const Navbar = () => {
 				<div className="ml-auto">
 
 					{!store.token ? (
-					<Link to="./login">
+					<Link to="./">
 						<button className="btn btn-primary">Login</button>
 					</Link>
 					) : (
