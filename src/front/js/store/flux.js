@@ -49,10 +49,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//'try' this if it doesnt work it moves to catch
 						try{
 						const resp = await fetch('https://yvv1214-musical-garbanzo-w9qp54gvvq7f54j-3001.preview.app.github.dev/api/login', options)
-								// if(resp.status !== 200) {
-								// alert('an error occured');
-								// return false;
-								//  }
+								if(resp.status !== 200) {
+								alert('an error occured');
+								return false;
+								 }
 				// if response status is not 200 get alert else jsonify
 						const data = await resp.json()
 							console.log(data, 'this came from backend');
