@@ -85,7 +85,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				
 					// fetching data from the backend
-					fetch(process.env.BACKEND_URL + "/api/hello", opts)
+					fetch("https://yvv1214-musical-garbanzo-w9qp54gvvq7f54j-3001.preview.app.github.dev/api/private", opts)
 					.then(resp => resp.json())
 					.then(data => setStore({ message: data.message }))
 					.catch(error => 
