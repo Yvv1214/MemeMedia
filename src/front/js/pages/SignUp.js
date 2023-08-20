@@ -75,8 +75,8 @@ export const SignUp = () => {
 			</div>
 
 			<div className="mt-2">
-				<Link to={'./'}>
-				<a href="#">Return Home</a>
+				<Link to={'/login'}>
+				<a href="#">Log In</a>
 				</Link>
 			</div>
 
