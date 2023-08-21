@@ -38,7 +38,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						const options = {
 							method:'POST',
 							headers: {
-								"Content_Type": "application/json"
+								"Content-Type": "application/json"
 						},
 							body: JSON.stringify({
 								"email": email,
@@ -48,7 +48,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		
 				//'try' this if it doesnt work it moves to catch
 						try{
-						const resp = await fetch('https://yvv1214-musical-garbanzo-w9qp54gvvq7f54j-3001.preview.app.github.dev/api/login', options)
+						const resp = await fetch('https://yvv1214-musical-garbanzo-w9qp54gvvq7f54j-3001.app.github.dev/api/login', options)
 								if(resp.status !== 200) {
 								alert('an error occured');
 								return false;
@@ -57,7 +57,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						const data = await resp.json()
 							console.log(data, 'this came from backend');
 							localStorage.setItem('data', data.access_token);
-							setStore({token: access_token})	
+							setStore({token: data.access_token})	
+							console.log(getStore().token, 'access token')
 							return true;
 				// access_token comes from the postman where u post/login that has the hash and the token being used is the one thats null atop
 				//the login() also stores the token with setStore and making token: null into token:lasdjfljoiwroifn
