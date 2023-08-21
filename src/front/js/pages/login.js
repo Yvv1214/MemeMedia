@@ -21,13 +21,21 @@ export const Login = () => {
 		actions.login(email,password)			 	
 	 }
 
+
+	 useEffect (() => {
+		if(store.token && store.token !== "" && store.token !== undefined){
+		navigate('/private')
+		}
+
+	 },[store.token])
+
 	return (
 		<div className="text-center mt-5">
 			<h1>Please Sign In </h1>
 
 
 			{/* if token exist and token isnt '' and undefined login success u get redirected to login successfule, else fill this form */}
-			{(token && token !== "" && token !== undefined) ? "login successfull with this token" + token :
+			{/* {(token && token !== "" && token !== undefined) ? navigate('/private') : */}
 			
 
 			<form className="container w-25 p-4 bg-light" onSubmit={(e) => submit(e)}>
@@ -56,7 +64,7 @@ export const Login = () => {
 				</Link>
 			</div>
 			</form>
-}
+{/* } */}
 
 		</div>
 	);
