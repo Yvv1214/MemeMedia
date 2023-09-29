@@ -12,6 +12,11 @@ export const Navbar = () => {
 					<span className="navbar-brand mb-0 h1">MemeMedia</span>
 				</Link>
 
+				<Link to='/newPost'>
+					<button className="newPostBtn btn">
+					<i class="fas fa-plus-square"></i> New Post</button>
+				</Link>
+
 				<div className="ml-auto">
 
 					{!store.token ? (
