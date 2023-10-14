@@ -20,7 +20,7 @@ export const SignUp = () => {
 		}
 		
 
-		console.log(username, email, password)
+		console.log(username, email, password, password2)
 	}
 
 
@@ -31,7 +31,7 @@ export const SignUp = () => {
 		<div className="text-center mt-5 d-inline justify-content-center">
 			<h1 className="mt-3">Create New User</h1>
 
-			<form className="row col-6 p-4 bg-info d-flex justify-content-around mx-auto rounded">
+			<form className="loginForm row col-md-4 p-4 d-flex justify-content-around mx-auto rounded" onSubmit={(e) => createUser(e)}>
 
                 <div className="form-group mt-2">
                     <label>Username</label>
@@ -54,9 +54,9 @@ export const SignUp = () => {
 				</div>
 
 				<div>
-					<button type="submit" 
-					className="btn btn-success mt-4" 
-					onSubmit={createUser}>
+					<button 
+					type="submit" 
+					className="btn btn-success mt-4">
 						Create Account
 					</button>
 				</div>

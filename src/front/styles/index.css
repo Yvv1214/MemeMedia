@@ -2,6 +2,12 @@
     General Styles used on every website (Don't Repeat Yourself)
 */
 
+
+
+.loginForm {
+    background-color:darkseagreen;
+}
+
 .footer {
     position: fixed;
     bottom: 0;
