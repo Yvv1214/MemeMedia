@@ -9,62 +9,72 @@ import {useNavigate} from 'react-router-dom';
 export const Login = () => {
 
 	const { store, actions } = useContext(Context);
-	const [email, setEmail] = useState('')
+	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
-	const token = localStorage.getItem('token')
+	const [rememberMe,  setRememberMe] = useState(false)
 	const navigate = useNavigate()
-	console.log(token, 'your token')
 
- //requesting token frontend from flux file action.login
+
 	const submit = (e) => {
 		e.preventDefault()
-		actions.login(email,password)			 	
+		actions.login(username,password)			 	
 	 }
 
 
-	 useEffect (() => {
-		if(store.token && store.token !== "" && store.token !== undefined){
-		navigate('/private')
+	 const RememberMe = () => {
+		if (rmCheck.checked && emailInput.value !== "") {
+		  localStorage.username = emailInput.value;
+		  localStorage.checkbox = rmCheck.value;
+		} else {
+		  localStorage.username = "";
+		  localStorage.checkbox = "";
 		}
+	  }
 
-	 },[store.token])
+
+
+	//  useEffect (() => {
+	// 	if(store.token && store.token !== "" && store.token !== undefined){
+	// 	navigate('/account')
+	// 	}
+
+	//  },[store.token])
+
+
 
 	return (
-		<div className="text-center mt-5">
-			<h1>Please Sign In </h1>
 
-
-			{/* if token exist and token isnt '' and undefined login success u get redirected to login successfule, else fill this form */}
-			{/* {(token && token !== "" && token !== undefined) ? navigate('/private') : */}
+		<div className="text-center content-container">
+			<h1 className="mt-5">Sign in </h1>
 			
 
-			<form className="container w-25 p-4 bg-light" onSubmit={(e) => submit(e)}>
-			<div className="form-group ">
-				<label for="loginEmail">Email address</label>
-				<input type="text" className="form-control" id="loginEmail" placeholder="email@example.com" value={email} onChange={e => setEmail(e.target.value)}></input>
-			</div>
+			<form className="container col-md-5 p-4 bg-light mb-5 loginForm" onSubmit={(e) => submit(e)}>
+				<div className="form-group ">
+					<label for="userName">Username</label>
+					<input type="text" className="form-control" id="userName" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)}></input>
+				</div>
 
-			<div className="form-group mt-2">
-				<label for="loginPassword">Password</label>
-				<input type="password" className="form-control" id="loginPassword" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)}></input>
-			</div>
+				<div className="form-group mt-2">
+					<label for="loginPassword">Password</label>
+					<input type="password" className="form-control" id="loginPassword" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)}></input>
+				</div>
 
-			<div className="form-check d-flex justify-content-center mb-2">
-				<input type="checkbox" className="form-check-input me-1" id="dropdownCheck2"></input>
-				<label className="form-check-label" for="dropdownCheck2">
-				Remember me
-				</label>
-			</div>
-			
-			<button type="submit" className="btn btn-primary mt-2">Sign in</button>
+				<div className="form-check d-flex justify-content-center mb-2">
+					<input type="checkbox" className="form-check-input me-1" id="dropdownCheck2"></input>
+					<label className="form-check-label" for="dropdownCheck2">
+						Remember me
+					</label>
+				</div>
+				
+				<button type="submit" className="btn btn-success mt-2">Sign in</button>
 
-			<div className="mt-2">
-				<Link to={'./new_user'}>
-				<a href="#">New User? Create Account Here</a>
-				</Link>
-			</div>
+				<div className="mt-2">
+					<Link to={'/register'} style={{color: 'blue'}}>
+						New User? Create Account Here
+					</Link>
+				</div>
 			</form>
-{/* } */}
+
 
 		</div>
 	);
