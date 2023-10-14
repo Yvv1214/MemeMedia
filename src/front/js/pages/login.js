@@ -69,7 +69,7 @@ export const Login = () => {
 				<button type="submit" className="btn btn-success mt-2">Sign in</button>
 
 				<div className="mt-2">
-					<Link to={'/register'} style={{color: 'blue'}}>
+					<Link to={'/signup'} style={{color: 'blue'}}>
 						New User? Create Account Here
 					</Link>
 				</div>
