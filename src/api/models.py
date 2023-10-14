@@ -36,28 +36,34 @@ class User(db.Model):
 class Comments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     comment =db.Column(db.String(300), unique=False, nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
 class Following(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     your_following = db.Column(db.Boolean(), unique=False, nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
 
 
 class Followers(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     your_followers = db.Column(db.Boolean(), unique=False, nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
 class Blocked(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     blocked_user = db.Column(db.Boolean(), unique=False, nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
 class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     media = db.Column(db.Boolean(), unique=False, nullable=True)
-    description = db.Columnn(db.String(300), nullable=True)
-    hashtag = db.Column(db.string(200), nullable=True)
+    description = db.Column(db.String(300), nullable=True)
+    hashtag = db.Column(db.String(200), nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
 
