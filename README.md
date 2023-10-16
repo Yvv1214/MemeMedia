@@ -1,7 +1,7 @@
 # Installations
 
--pipenv install
--npm install
+- pipenv install
+- npm install
 
 Build web applications using React.js for the front end and python/flask for your backend API.
 
