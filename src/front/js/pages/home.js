@@ -17,15 +17,15 @@ export const Home = () => {
         <div className="container">
             <h2 className="d-flex text-center">Looking for Memes?</h2>
 
-            <div className="tagsDiv container">  
+            <div className="tagsDiv container border border-dark">  
             
             {/* this will be mapped */}
 
-                <div className="card tagsCard">
+                <div className="card tagsCard col-lg-2 col-md-3">
                     {/* <Link to={'/meme.tag'} */}
                     <img src="..." className="card-img-top"/>
-                    <div className="card-body">
-                        <h5 className="card-title">Tag Name</h5>
+                    <div className="card-body text-center">
+                        <p className="card-title fw-bold">Tag Name</p>
                         <p className="card-text">number of posts</p>
                     </div>
                 </div>

@@ -5,3 +5,20 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
 */
+
+
+.card {
+    border: red solid 1px;
+}
+
+@media screen and (max-width: 600px) {
+    .card {
+      width:130px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .card-body {
+      padding: 0;
+    }
+  }
