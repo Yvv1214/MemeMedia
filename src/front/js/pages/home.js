@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 
 export const Home = () => {
 
+    const [icon, setIcon] = useState(false)
+    const [icon2, setIcon2] = useState(false)
 
 
 
@@ -31,9 +33,9 @@ export const Home = () => {
                 </div>
             </div>
 
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-md navbar-light bg-light">
                 <div className="container-fluid">
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button className="navbar-toggler homeFilter" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -51,7 +53,7 @@ export const Home = () => {
                         </ul>
                         </li>
 
-                        <li className="nav-item dropdown">
+                        <li className="nav-item dropdown dropdown2">
                         <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Dropdown2
                         </a>
@@ -64,13 +66,19 @@ export const Home = () => {
                         </li>
                     </ul>
 
-                    <Link to='/'>
-                        <i className="fas fa-th"></i>
-                    </Link>
-                    <Link to='/'>
-                        <i class="fas fa-play-circle"></i>
-                        {/* or <i class="fas fa-stop-circle"></i> */}
-                    </Link>
+                    <button onClick={() => setIcon(!icon)} style={{border: 'none', background: 'none'}}>
+                        {icon == false ?
+                        <i className="fas fa-th me-2" title="uniform"></i>
+                        :
+                        <i class="fas fa-teeth me-2" title="waterfall"></i> }
+                    </button>
+
+                    <button onClick={() => setIcon2(!icon2)} style={{border: 'none', background: 'none'}}>
+                        {icon2 == false ? 
+                        <i class="fas fa-play-circle" style={{color: 'green'}} title="autoplay"></i>
+                        : 
+                        <i class="fas fa-stop-circle" style={{color: 'red'}} title="Disable Autoplay"></i> }
+                    </button>
                     </div>
                 </div>
             </nav>
