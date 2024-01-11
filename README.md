@@ -6,6 +6,7 @@
 
 # To run
 - npm run start
+- pipenv shell
 - pipenv run start
 
 
